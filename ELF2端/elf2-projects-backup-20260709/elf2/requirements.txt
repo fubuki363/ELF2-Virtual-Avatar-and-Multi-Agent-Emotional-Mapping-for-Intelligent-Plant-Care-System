@@ -1,1 +1,23 @@
-pyserial>=3.5\nserial-asyncio>=0.1\npaho-mqtt>=2.0\nopenai>=1.0\npython-dotenv>=1.0\nwebsockets>=12.0\npymysql>=1.1\npiper-tts>=1.2; platform_machine == 'aarch64'\npytest>=8.0\npytest-asyncio>=0.23\n
+# ── ELF2 核心依赖 ──
+pyserial>=3.5
+serial-asyncio>=0.1
+paho-mqtt>=2.0
+openai>=1.0
+python-dotenv>=1.0
+websockets>=12.0
+pymysql>=1.1
+piper-tts>=1.2; platform_machine == 'aarch64'
+
+# ── 从 PC 端迁移的 Agent 依赖 ──
+langgraph>=0.2
+langchain-chroma>=0.1
+langchain-text-splitters>=0.3
+zhipuai>=2.0
+python-docx>=1.0
+chromadb>=0.5
+requests>=2.31
+beautifulsoup4>=4.12
+
+# ── 测试 ──
+pytest>=8.0
+pytest-asyncio>=0.23
