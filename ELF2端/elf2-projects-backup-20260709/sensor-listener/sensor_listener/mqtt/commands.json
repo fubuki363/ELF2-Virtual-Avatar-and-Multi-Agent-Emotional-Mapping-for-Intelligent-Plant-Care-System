@@ -1,0 +1,62 @@
+{
+    "/sensor.state.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "SensorStateGet"
+    },
+    "/sensor.humidity.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "SensorHumidityGet"
+    },
+    "/sensor.temperature.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "SensorTemperatureGet"
+    },
+    "/sensor.CO2.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "SensorCO2Get"
+    },
+    "/sensor.air_quality.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "SensorAir_qualityGet"
+    },
+    "/sensor.illumination_intensity.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "SensorIllumination_intensityGet"
+    },
+    "/sensor.soil_moisture.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "SensorSoil_moistureGet"
+    },
+    "/plant.photo.take": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "PlantPhotoTake"
+    },
+    "/plant.health.get": {
+        "module": "sensor_listener.mqtt.cmd_sensor",
+        "class": "PlantHealthGet"
+    },
+    "/sys.cpu.temp": {
+        "module": "sensor_listener.mqtt.cmd_sys",
+        "class": "SysCpuTemp"
+    },
+    "/sys.mem.info": {
+        "module": "sensor_listener.mqtt.cmd_sys",
+        "class": "SysMemInfo"
+    },
+    "/sys.disk.info": {
+        "module": "sensor_listener.mqtt.cmd_sys",
+        "class": "SysDiskInfo"
+    },
+    "/sys.os.uptime": {
+        "module": "sensor_listener.mqtt.cmd_sys",
+        "class": "SysOsUptime"
+    },
+    "/sys.power.reboot": {
+        "module": "sensor_listener.mqtt.cmd_sys",
+        "class": "SysPowerReboot"
+    },
+    "/file.get": {
+        "module": "sensor_listener.mqtt.cmd_file",
+        "class": "FileSend"
+    }
+}

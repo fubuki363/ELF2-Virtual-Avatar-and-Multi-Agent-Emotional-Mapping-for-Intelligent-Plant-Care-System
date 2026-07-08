@@ -1,0 +1,24 @@
+{
+  "开灯": [{"d":"led","mode":"white","brightness":200}],
+  "打开灯": [{"d":"led","mode":"white","brightness":200}],
+  "打开灯光": [{"d":"led","mode":"white","brightness":200}],
+  "关灯": [{"d":"led","mode":"effect","effect":"off"}],
+  "关闭灯光": [{"d":"led","mode":"effect","effect":"off"}],
+  "浇水": [{"d":"pump","v":80}],
+  "停止浇水": [{"d":"pump","v":0}],
+  "开风扇": [{"d":"fan","v":80}],
+  "关风扇": [{"d":"fan","v":0}],
+  "升温": [{"d":"heater","v":80}],
+  "降温": [{"d":"heater","v":0}],
+  "加湿": [{"d":"humidifier","v":80}],
+  "关闭加湿": [{"d":"humidifier","v":0}],
+  "彩虹灯": [{"d":"led","mode":"effect","effect":"rainbow","brightness":128}],
+  "呼吸灯": [{"d":"led","mode":"effect","effect":"breathing","brightness":100}],
+  "全部关停": [
+    {"d":"fan","v":0},
+    {"d":"heater","v":0},
+    {"d":"pump","v":0},
+    {"d":"humidifier","v":0},
+    {"d":"led","mode":"effect","effect":"off"}
+  ]
+}

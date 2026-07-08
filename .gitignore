@@ -1,0 +1,52 @@
+# ── Sensitive files ──
+.env
+*.env
+!.env.example
+.vts_token
+*_token*
+emqxsl-ca.crt
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+*.whl
+
+# ── Virtual environments ──
+venv/
+.venv/
+env/
+.env/
+
+# ── IDE & Editor ──
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Model & Data files (large binaries) ──
+*.pt
+*.pth
+*.onnx
+*.index
+*.bin
+pretrained_models/
+CosyVoice/pretrained_models/
+
+# ── Logs & Output ──
+sensor_logs/
+*.log
+*.csv
+decision_log.json
+
+# ── OS files ──
+desktop.ini

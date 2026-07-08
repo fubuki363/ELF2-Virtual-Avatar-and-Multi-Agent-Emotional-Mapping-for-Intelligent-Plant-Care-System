@@ -1,0 +1,62 @@
+{
+    "/sensor.state.get": {
+        "module": "cmd_sensor",
+        "class": "SensorStateGet"
+    },
+    "/sensor.humidity.get": {
+        "module": "cmd_sensor",
+        "class": "SensorHumidityGet"
+    },
+    "/sensor.temperature.get": {
+        "module": "cmd_sensor",
+        "class": "SensorTemperatureGet"
+    },
+    "/sensor.CO2.get": {
+        "module": "cmd_sensor",
+        "class": "SensorCO2Get"
+    },
+    "/sensor.air_quality.get": {
+        "module": "cmd_sensor",
+        "class": "SensorAir_qualityGet"
+    },
+    "/sensor.illumination_intensity.get": {
+        "module": "cmd_sensor",
+        "class": "SensorIllumination_intensityGet"
+    },
+    "/sensor.soil_moisture.get": {
+        "module": "cmd_sensor",
+        "class": "SensorSoil_moistureGet"
+    },
+    "/sys.cpu.temp": {
+        "module": "cmd_sys",
+        "class": "SysCpuTemp"
+    },
+    "/sys.mem.info": {
+        "module": "cmd_sys",
+        "class": "SysMemInfo"
+    },
+    "/sys.disk.info": {
+        "module": "cmd_sys",
+        "class": "SysDiskInfo"
+    },
+    "/sys.os.uptime": {
+        "module": "cmd_sys",
+        "class": "SysOsUptime"
+    },
+    "/sys.power.reboot": {
+        "module": "cmd_sys",
+        "class": "SysPowerReboot"
+    },
+    "/live.BGM.song": {
+        "module": "cmd_live",
+        "class": "LiveBGMSong"
+    },
+    "/live.BGM.change": {
+    "module": "cmd_live",
+    "class": "LiveBGMChange"
+    },
+    "/live.BGM.close": {
+    "module": "cmd_live",
+    "class": "LiveBGMClose"
+    }
+}

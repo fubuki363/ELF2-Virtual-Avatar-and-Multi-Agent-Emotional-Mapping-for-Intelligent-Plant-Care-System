@@ -1,0 +1,1 @@
+pyserial>=3.5\nserial-asyncio>=0.1\npaho-mqtt>=2.0\nopenai>=1.0\npython-dotenv>=1.0\nwebsockets>=12.0\npymysql>=1.1\npiper-tts>=1.2; platform_machine == 'aarch64'\npytest>=8.0\npytest-asyncio>=0.23\n

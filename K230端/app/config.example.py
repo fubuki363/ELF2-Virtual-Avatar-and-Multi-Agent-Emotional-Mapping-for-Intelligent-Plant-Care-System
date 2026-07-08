@@ -1,0 +1,65 @@
+# config.example.py — K230 配置模板
+# 复制此文件为 config.py 并填入真实值
+
+# === WiFi ===
+WIFI_SSID = "your_wifi_ssid"
+WIFI_PASSWORD = "your_wifi_password"
+
+# === ELF2 上位机 ===
+ELF2_HOSTNAME = "elf2-desktop"
+ELF2_STATIC_IP = "192.168.1.100"
+ELF2_SENSOR_PORT = 8259
+ELF2_CMD_PORT = 8260
+ELF2_VIDEO_PORT = 6001
+
+# === I2C 总线 (传感器) ===
+I2C_BUS = 2
+I2C_SCL = 11
+I2C_SDA = 12
+I2C_FREQ = 100000
+
+# === I2C 传感器地址 ===
+SHT35_ADDR = 0x44
+CCS811_ADDR = 0x5A
+BH1750_ADDR = 0x23
+
+# === ADC 传感器 ===
+ADC_GAS_CH = 0
+ADC_SOIL_CH = 1
+
+# === PWM 执行器 ===
+PWM_FAN_IO = 42
+PWM_FAN_CH = 0
+PWM_FAN_FREQ = 25000
+
+PWM_HEATER_IO = 43
+PWM_HEATER_CH = 1
+PWM_HEATER_FREQ = 1000
+
+PWM_PUMP_IO = 46
+PWM_PUMP_CH = 2
+PWM_PUMP_FREQ = 1000
+
+PWM_HUMID_IO = 47
+PWM_HUMID_CH = 3
+PWM_HUMID_FREQ = 1000
+
+# === WS2812B LED ===
+LED_SPI_BUS = 0
+LED_SPI_MOSI_IO = 16
+LED_SPI_CLK_IO = 15
+LED_SPI_BAUDRATE = 3200000
+LED_COUNT = 60
+LED_COLOR_ORDER = "GRB"
+
+# === 采样间隔 ===
+SAMPLE_INTERVAL_MS = 1000
+LED_FRAME_INTERVAL_MS = 20
+
+# === Mics5524 分压补偿 ===
+MICS5524_DIVIDER_RATIO = 1.5
+
+# === 视频流 ===
+VIDEO_WIDTH = 1280
+VIDEO_HEIGHT = 720
+VIDEO_FPS = 90
