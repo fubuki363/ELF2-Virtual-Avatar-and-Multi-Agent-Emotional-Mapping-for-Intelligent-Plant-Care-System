@@ -20,24 +20,24 @@ load_dotenv()
 APPID = os.getenv("XFYUN_APPID")
 APIKey = os.getenv("XFYUN_APIKEY")
 APISecret = os.getenv("XFYUN_APISECRET")
-XFYUN_URL = "wss://ws-api.xfyun.cn/v2/tts"
+XFYUN_URL = "wss://tts-api.xfyun.cn/v2/tts"
+SIGN_HOST = "ws-api.xfyun.cn"   # 签名专用 host（与连接地址不同）
 VOICE_NAME = "x4_lingxiaoyu_emo"  # 讯飞发音人
 
 
 # ========================================
 
 def build_auth_url(request_url, api_key, api_secret):
-    """动态生成带有签名的鉴权 URL"""
+    """动态生成带有签名的鉴权 URL（签名 host 与连接 host 不同）"""
     parsed_url = urlparse(request_url)
-    host = parsed_url.netloc
     path = parsed_url.path
 
     # 1. 生成 RFC1123 格式时间戳
     now = datetime.now()
     date = format_date_time(mktime(now.timetuple()))
 
-    # 2. 拼接签名原始字符串
-    signature_origin = f"host: {host}\ndate: {date}\nGET {path} HTTP/1.1"
+    # 2. 拼接签名原始字符串（必须用 SIGN_HOST，非连接地址）
+    signature_origin = f"host: {SIGN_HOST}\ndate: {date}\nGET {path} HTTP/1.1"
 
     # 3. HMAC-SHA256 加密
     signature_sha = hmac.new(
@@ -57,7 +57,7 @@ def build_auth_url(request_url, api_key, api_secret):
     params = {
         "authorization": authorization,
         "date": date,
-        "host": host
+        "host": SIGN_HOST
     }
     return f"{request_url}?{urlencode(params)}"
 
