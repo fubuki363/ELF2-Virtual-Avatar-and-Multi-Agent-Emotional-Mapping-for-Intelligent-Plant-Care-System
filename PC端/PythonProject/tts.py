@@ -49,13 +49,12 @@ def build_auth_url(request_url, api_key, api_secret):
     # 4. Base64 编码
     signature_sha = base64.b64encode(signature_sha).decode('utf-8')
 
-    # 5. 构建 Authorization 头部
+    # 5. 构建 Authorization (v2 接口不需要 base64 编码)
     authorization_origin = f'api_key="{api_key}", algorithm="hmac-sha256", headers="host date request-line", signature="{signature_sha}"'
-    authorization = base64.b64encode(authorization_origin.encode('utf-8')).decode('utf-8')
 
-    # 6. 拼接到 URL 参数中
+    # 6. 拼接到 URL 参数中 (v2: authorization 直接传原始字符串)
     params = {
-        "authorization": authorization,
+        "authorization": authorization_origin,
         "date": date,
         "host": host
     }
