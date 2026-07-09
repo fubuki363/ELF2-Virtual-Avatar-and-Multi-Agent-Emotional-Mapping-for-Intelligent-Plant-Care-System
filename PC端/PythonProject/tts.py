@@ -10,9 +10,8 @@ from time import mktime
 from urllib.parse import urlencode, urlparse
 from wsgiref.handlers import format_date_time
 from dotenv import load_dotenv
-import soundfile as sf
 import sounddevice as sd
-import io
+import numpy as np
 
 load_dotenv()
 
@@ -22,7 +21,7 @@ APIKey = os.getenv("XFYUN_APIKEY")
 APISecret = os.getenv("XFYUN_APISECRET")
 XFYUN_URL = "wss://tts-api.xfyun.cn/v2/tts"
 SIGN_HOST = "ws-api.xfyun.cn"   # 签名专用 host（与连接地址不同）
-VOICE_NAME = "x4_lingxiaoyu_emo"  # 讯飞发音人
+VOICE_NAME = "x4_yezi"  # 讯飞发音人（免费可用）
 
 
 # ========================================
@@ -70,18 +69,14 @@ async def get_xfyun_audio_bytes(text: str) -> bytes:
     request_data = {
         "common": {"app_id": APPID},
         "business": {
-            "aue": "lame",  # 音频编码格式：lame 表示要求返回 MP3 格式
-            "sfl": 1,  # 开启流式返回
+            "aue": "raw",  # raw PCM (与官方demo一致)
+            "auf": "audio/L16;rate=16000",
             "vcn": VOICE_NAME,
-            "speed": 55,  # 语速 0-100
-            "volume": 100,  # 音量 0-100
-            "pitch": 60,  # 音高 0-100
-            "bgs": 0,  # 背景音 0或1
-            "tte": "utf8"  # 文本编码格式
+            "tte": "utf8"
         },
         "data": {
-            "status": 2,  # 2代表只有一段文本请求
-            "text": base64.b64encode(text.encode('utf-8')).decode('utf-8')
+            "status": 2,
+            "text": str(base64.b64encode(text.encode('utf-8')), "UTF8")
         }
     }
 
@@ -144,20 +139,19 @@ def ai_reply_to_voice(ai_reply: str):
             print("⚠️ 未收到音频数据。")
             return
 
-        # 2. 用 io.BytesIO 将内存数据伪装成文件供播放
-        data, sr = sf.read(io.BytesIO(audio_bytes))
+        # 2. 原始 PCM 16kHz 16bit 单声道 → 直接播放
+        audio_array = np.frombuffer(audio_bytes, dtype=np.int16)
 
-        # 3. 获取声卡 ID 并施加严格拦截
+        # 3. 获取声卡 ID
         device_id = get_vb_cable_device()
         if device_id is None:
-            # 如果找不到，直接拦截播放，坚决不让你听到机器音！
             print("❌ 致命错误：找不到名为 'CABLE Input' 的虚拟声卡！")
             print("💡 请检查上方打印的设备列表，看看虚拟声卡到底叫什么名字。")
             return
 
-        # 4. 播放到虚拟声卡
+        # 4. 播放到虚拟声卡 (16000Hz, 16bit PCM)
         print(f"🔊 正在将语音推入通道 ID [{device_id}]...")
-        sd.play(data, sr, device=device_id)
+        sd.play(audio_array, samplerate=16000, device=device_id)
         sd.wait()
         print("✅ 播放完毕！")
 
