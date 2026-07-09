@@ -20,7 +20,7 @@ load_dotenv()
 APPID = os.getenv("XFYUN_APPID")
 APIKey = os.getenv("XFYUN_APIKEY")
 APISecret = os.getenv("XFYUN_APISECRET")
-XFYUN_URL = "wss://tts-api.xfyun.cn/v2/tts"
+XFYUN_URL = "wss://ws-api.xfyun.cn/v2/tts"
 VOICE_NAME = "x4_lingxiaoyu_emo"  # 讯飞发音人
 
 
@@ -32,7 +32,7 @@ def build_auth_url(request_url, api_key, api_secret):
     host = parsed_url.netloc
     path = parsed_url.path
 
-    # 1. 生成当前时间的 RFC1123 格式字符串
+    # 1. 生成 RFC1123 格式时间戳
     now = datetime.now()
     date = format_date_time(mktime(now.timetuple()))
 
@@ -49,12 +49,13 @@ def build_auth_url(request_url, api_key, api_secret):
     # 4. Base64 编码
     signature_sha = base64.b64encode(signature_sha).decode('utf-8')
 
-    # 5. 构建 Authorization (v2 接口不需要 base64 编码)
+    # 5. 构建 Authorization 并 base64 编码
     authorization_origin = f'api_key="{api_key}", algorithm="hmac-sha256", headers="host date request-line", signature="{signature_sha}"'
+    authorization = base64.b64encode(authorization_origin.encode('utf-8')).decode('utf-8')
 
-    # 6. 拼接到 URL 参数中 (v2: authorization 直接传原始字符串)
+    # 6. 拼接到 URL 参数中
     params = {
-        "authorization": authorization_origin,
+        "authorization": authorization,
         "date": date,
         "host": host
     }
